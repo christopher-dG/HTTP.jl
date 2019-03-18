@@ -24,6 +24,10 @@ include("Messages.jl")                 ;using .Messages
 include("cookies.jl")                  ;using .Cookies
 include("Streams.jl")                  ;using .Streams
 
+function __init__()
+    SCHEMES[] = Dict("http" => Val(:http), "https" => Val(:https))
+end
+
 """
 
     HTTP.request(method, url [, headers [, body]]; <keyword arguments>]) -> HTTP.Response
@@ -154,7 +158,7 @@ Cookie options
 
  - `cookies::Union{Bool, Dict{String, String}} = false`, enable cookies, or alternatively,
         pass a `Dict{String, String}` of name-value pairs to manually pass cookies
- - `cookiejar::Dict{String, Set{Cookie}}=default_cookiejar`, 
+ - `cookiejar::Dict{String, Set{Cookie}}=default_cookiejar`,
 
 
 Cananoincalization options
